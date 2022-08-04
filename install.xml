@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+    <singlepages>
+        <page name="API Proposal" path="/dashboard/api_proposal" filename="/dashboard/api_proposal/view.php"
+              package="concrete_api_proposal_2022"/>
+        <page name="REST API" path="/dashboard/api_proposal/rest" filename="/dashboard/api_proposal/rest.php"
+              package="concrete_api_proposal_2022"/>
+        <page name="GraphQL API" path="/dashboard/api_proposal/graphql" filename="/dashboard/api_proposal/graphql.php"
+              package="concrete_api_proposal_2022"/>
+    </singlepages>
+</concrete5-cif>
