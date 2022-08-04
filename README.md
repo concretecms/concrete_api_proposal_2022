@@ -14,19 +14,23 @@ Ultimately, this API – including any enhancements or tweaks that come about d
 
 Clone this repository into your testing site's `packages/` directory.
 
-Within your testing site, enable the Concrete CMS REST API on Dashboard > System and Settings > API > Settings. 
-
-On this same page, add an API integration. Name your API integration `Concrete CMS API Proposal` - this is important because it's this integration that our custom REST documentation interfaces will connect to.
+Within your testing site, enable the Concrete CMS REST API on Dashboard > System and Settings > API > Settings. Do not create an integration at this time, it will be created for you when the package is installed.
 
 For the redirect URL in this API integration, specify `http://www.yoursiteurl.com/packages/concrete_api_proposal_2022/swagger/oauth2-redirect.html`
 
 Now, install the "Concrete CMS API Proposal" package into your site.
 
-## Browsing the API Proposal
+## Try it Out
 
 API proposals can be found in Dashboard > API Proposal. Clicking on this page will redirect you into a REST API page. From this page, click the "View API Documentation Console" button. This will launch standard REST API docs, powered by [Swagger UI](https://swagger.io/tools/swagger-ui/).
 
 <img width="1484" alt="Screen Shot 2022-08-04 at 2 58 58 PM" src="https://user-images.githubusercontent.com/527809/182960023-a31e1fe7-2f0c-4311-a44a-c7bfefb59dde.png">
+
+## Demonstration Video
+
+For a quick walkthrough of installation and a demonstration of a couple REST endpoints in the new proposal, see here:
+
+[tbd]
 
 ## GraphQL
 
