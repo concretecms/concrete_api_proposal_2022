@@ -30,7 +30,7 @@ API proposals can be found in Dashboard > API Proposal. Clicking on this page wi
 
 For a quick walkthrough of installation and a demonstration of a couple REST endpoints in the new proposal, watch this video:
 
-<div style="position: relative; padding-bottom: 56.42633228840126%; height: 0;"><iframe src="https://www.loom.com/embed/d3f22bd837a44105a5c6b5ae982bcfe3" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+https://www.loom.com/share/d3f22bd837a44105a5c6b5ae982bcfe3
 
 ## GraphQL
 
