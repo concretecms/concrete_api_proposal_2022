@@ -26,6 +26,8 @@ Now, install the "Concrete CMS API Proposal" package into your site.
 
 API proposals can be found in Dashboard > API Proposal. Clicking on this page will redirect you into a REST API page. From this page, click the "View API Documentation Console" button. This will launch standard REST API docs, powered by [Swagger UI](https://swagger.io/tools/swagger-ui/).
 
+<img width="1484" alt="Screen Shot 2022-08-04 at 2 58 58 PM" src="https://user-images.githubusercontent.com/527809/182960023-a31e1fe7-2f0c-4311-a44a-c7bfefb59dde.png">
+
 ## GraphQL
 
 Yes, we are planning on a GraphQL API in addition to a REST API. No, that work has not yet been started. 
