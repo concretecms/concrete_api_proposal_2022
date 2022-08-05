@@ -38,7 +38,8 @@ Yes, we are planning on a GraphQL API in addition to a REST API. No, that work h
 
 ## Feedback
 
-[tbd fill in relevant forum threads and github issue.]
+* Forum Thread: https://forums.concretecms.org/t/feedback-wanted-rest-api-proposal-for-9-2-0-100-working-api/3709
+* GitHub Issue: https://github.com/concretecms/concretecms/issues/10791
 
 --
 @aembler
