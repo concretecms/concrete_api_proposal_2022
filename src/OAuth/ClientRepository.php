@@ -65,7 +65,7 @@ class ClientRepository implements ClientRepositoryInterface
             if ($this->isClientSecretHashed($client->getClientSecret())) {
                 return password_verify($clientSecret, $client->getClientSecret());
             } else {
-                return $clientSecret === $clientSecret;
+                return $client->getClientSecret() === $clientSecret;
             }
         }
 
