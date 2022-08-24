@@ -18,7 +18,7 @@ use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 class Controller extends Package
 {
     protected $appVersionRequired = '9.0.2';
-    protected $pkgVersion = '0.8.1';
+    protected $pkgVersion = '0.8.2';
     protected $pkgHandle = 'concrete_api_proposal_2022';
 
     const REST_API_CONNECTION_NAME = 'Concrete CMS API Proposal';
