@@ -26,7 +26,7 @@ trait SupportsCursorTrait
     }
 
     public function addCursorToResource(
-        array $results,
+        iterable $results,
         Request $request,
         string $getNewCursorMethod,
         ResourceAbstract $resource,
