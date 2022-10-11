@@ -23,11 +23,10 @@ class FileTransformer extends TransformerAbstract
     public function transform(FileEntity $file)
     {
         $version = $file->getApprovedVersion();
-        $data['id'] = $file->getFileID();
+        $data['id'] = $file->hasFileUUID() ? $file->getFileUUID() : $file->getFileID();
         $data['title'] = $version->getTitle();
         $data['description'] = $version->getDescription();
         $data['tags'] = $version->getTags();
-        $data['uuid'] = $file->getFileUUID();
         $data['url'] = $version->getURL();
         $data['file_type'] = $version->getType();
         $data['extension'] = $version->getExtension();

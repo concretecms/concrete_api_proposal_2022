@@ -2,6 +2,7 @@
 
 namespace Concrete\Proposals\Api\Traits;
 
+use ClassesWithParents\E;
 use Concrete\Core\Search\Column\ColumnInterface;
 use Concrete\Core\Search\Column\PagerColumnInterface;
 use Concrete\Core\Search\ItemList\ItemList;
@@ -15,25 +16,25 @@ trait SupportsCursorTrait
 
     public function getCurrentCursorFromRequest(Request $request)
     {
-        $currentCursor = (int)$this->request->query->get('after', null);
-        if ($currentCursor) {
-            $numbers = new Numbers();
-            if ($numbers->integer($currentCursor)) {
-                return $currentCursor;
-            }
-        }
-        return null;
+        return $this->request->query->get('after', null);
     }
 
     public function addCursorToResource(
         iterable $results,
         Request $request,
-        string $getNewCursorMethod,
+        $getNewCursor,
         ResourceAbstract $resource,
         $previousCursor = null
     ) {
         if (count($results) > 0) {
-            $newCursor = collect($results)->last()->$getNewCursorMethod();
+            if (is_callable($getNewCursor)) {
+                $newCursor = $getNewCursor(collect($results)->last());
+            } else {
+                /**
+                 * @var $getNewCursor string
+                 */
+                $newCursor = collect($results)->last()->$getNewCursor();
+            }
         } else {
             $newCursor = null;
         }
@@ -53,7 +54,7 @@ trait SupportsCursorTrait
     ) {
         $currentCursor = $this->getCurrentCursorFromRequest($request);
         $list->sortBySearchColumn($column);
-        if ($currentCursor > 0) {
+        if ($currentCursor) {
             $object = $getCursorObjectFunction($currentCursor);
             if ($object) {
                 $column->filterListAtOffset($list, $object);

@@ -42,11 +42,7 @@ class Files extends ApiController
      *         name="fileID",
      *         in="path",
      *         description="ID of file to return",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         )
+     *         required=true
      *     ),
      *     @OA\Parameter(
      *         name="includes",
@@ -74,8 +70,7 @@ class Files extends ApiController
      */
     public function read($fID)
     {
-        $fID = (int)$fID;
-        $file = File::getByID($fID);
+        $file = File::getByUUIDOrID($fID);
         if (!$file) {
             return $this->error(t('File not found.'), 404);
         } else {
@@ -108,11 +103,7 @@ class Files extends ApiController
      *     @OA\Parameter(
      *         name="after",
      *         in="query",
-     *         description="The ID of the current object to start at.",
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         )
+     *         description="The ID of the current object to start at."
      *     ),
      *     @OA\Parameter(
      *         name="includes",
@@ -150,7 +141,7 @@ class Files extends ApiController
             $list,
             $fileVersionColumn,
             function ($currentCursor) {
-                $file = File::getByID($currentCursor);
+                $file = File::getByUUIDOrID($currentCursor);
                 return $file;
             }
         );
@@ -160,7 +151,13 @@ class Files extends ApiController
 
         $results = $pagination->getCurrentPageResults();
         $resource = new Collection($results, new FileTransformer(), Resources::RESOURCE_FILES);
-        $this->addCursorToResource($results, $this->request, 'getFileID', $resource);
+        $this->addCursorToResource($results, $this->request, function($file) {
+            if ($file->hasFileUUID()) {
+                return $file->getFileUUID();
+            } else {
+                return $file->getFileID();
+            }
+        }, $resource);
 
         return $resource;
     }
@@ -239,11 +236,7 @@ class Files extends ApiController
      *         name="fileID",
      *         in="path",
      *         description="ID of file to delete",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         )
+     *         required=true
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -262,7 +255,7 @@ class Files extends ApiController
      */
     public function delete($fID)
     {
-        $file = File::getByID($fID);
+        $file = File::getByUUIDOrID($fID);
         if (!$file) {
             return $this->error(t('File not found'), 404);
         }
@@ -289,11 +282,7 @@ class Files extends ApiController
      *         name="fileID",
      *         in="path",
      *         description="ID of file to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         )
+     *         required=true
      *     ),
      *     @OA\RequestBody(ref="#/components/requestBodies/UpdatedFile"),
      *     @OA\Response(
@@ -313,7 +302,7 @@ class Files extends ApiController
      */
     public function update($fID)
     {
-        $file = File::getByID($fID);
+        $file = File::getByUUIDOrID($fID);
         if (!$file) {
             return $this->error(t('File not found'), 404);
         }
@@ -359,11 +348,7 @@ class Files extends ApiController
      *         name="fileID",
      *         in="path",
      *         description="ID of file to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         )
+     *         required=true
      *     ),
      *     @OA\RequestBody(ref="#/components/requestBodies/MoveFile"),
      *     @OA\Response(
@@ -383,7 +368,7 @@ class Files extends ApiController
      */
     public function move($fID)
     {
-        $file = File::getByID($fID);
+        $file = File::getByUUIDOrID($fID);
         if (!$file) {
             return $this->error(t('File not found'), 404);
         }

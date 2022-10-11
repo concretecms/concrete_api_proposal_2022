@@ -9,9 +9,7 @@ class File
 {
 
     /**
-     * @OA\Property(type="int", title="File ID")
-
-     * @var integer
+     * @OA\Property(title="File ID")
      */
     private $id;
 
